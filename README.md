@@ -52,12 +52,4 @@ Preprint. GitHub: https://github.com/sidthebuilder/Epistemic-Immune-System-AI
 
 ---
 
-## Related Work
-
-- Kumar, S. (2026a). *Building Epistemic Infrastructure for Enterprise AI Search: Why Retrieval Is Not Enough.* SSRN.
-- Bottino et al. (2026). *Retrieval Is Not Enough.* arXiv:2604.11759v2.
-- Karhade, M. (2026). *Not All Memories Age the Same.* arXiv:2604.26970.
-
----
-
 *All rights reserved. This manuscript may not be reproduced without the author's permission.*
