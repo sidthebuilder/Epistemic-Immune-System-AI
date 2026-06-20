@@ -12,463 +12,109 @@
   <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     :root {
-      --ink: #1a1a1a;
-      --ink-light: #3d3d3d;
-      --ink-muted: #666;
-      --rule: #c8c0b4;
-      --bg: #faf8f5;
-      --bg-card: #f4f1ec;
-      --accent: #8b1a1a;
-      --accent-light: #c0392b;
-      --highlight: #f0ebe2;
-      --code-bg: #1e1e2e;
-      --code-fg: #cdd6f4;
+      --ink: #1a1a1a; --ink-light: #3d3d3d; --ink-muted: #666;
+      --rule: #c8c0b4; --bg: #faf8f5; --bg-card: #f4f1ec;
+      --accent: #8b1a1a; --accent-light: #c0392b; --highlight: #f0ebe2;
+      --code-bg: #1e1e2e; --code-fg: #cdd6f4; --green-bg: #e8f5e9;
       --sans: 'Inter', system-ui, sans-serif;
       --serif: 'EB Garamond', Georgia, serif;
       --mono: 'JetBrains Mono', monospace;
     }
-
     html { scroll-behavior: smooth; }
-
-    body {
-      font-family: var(--serif);
-      font-size: 18px;
-      line-height: 1.8;
-      color: var(--ink);
-      background: var(--bg);
-      -webkit-font-smoothing: antialiased;
-    }
-
-    /* ── TOP NOTICE BANNER ── */
-    .preprint-banner {
-      background: var(--accent);
-      color: #fff;
-      text-align: center;
-      padding: 10px 20px;
-      font-family: var(--sans);
-      font-size: 13px;
-      font-weight: 500;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-    }
-
-    /* ── LAYOUT ── */
-    .wrapper {
-      max-width: 780px;
-      margin: 0 auto;
-      padding: 0 30px 80px;
-    }
-
-    /* ── HEADER ── */
-    header {
-      padding: 56px 0 40px;
-      border-bottom: 2px solid var(--ink);
-      margin-bottom: 40px;
-    }
-
-    .paper-label {
-      font-family: var(--sans);
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 18px;
-    }
-
-    h1 {
-      font-family: var(--serif);
-      font-size: 2.1rem;
-      font-weight: 600;
-      line-height: 1.25;
-      color: var(--ink);
-      margin-bottom: 28px;
-    }
-
-    .meta-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 0;
-      border: 1px solid var(--rule);
-      background: var(--bg-card);
-      margin-bottom: 20px;
-    }
-
-    .meta-item {
-      padding: 14px 18px;
-      border-right: 1px solid var(--rule);
-    }
+    body { font-family: var(--serif); font-size: 18px; line-height: 1.8; color: var(--ink); background: var(--bg); -webkit-font-smoothing: antialiased; }
+    .preprint-banner { background: var(--accent); color: #fff; text-align: center; padding: 10px 20px; font-family: var(--sans); font-size: 13px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; }
+    .wrapper { max-width: 800px; margin: 0 auto; padding: 0 32px 100px; }
+    header { padding: 56px 0 40px; border-bottom: 2px solid var(--ink); margin-bottom: 44px; }
+    .paper-label { font-family: var(--sans); font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 16px; }
+    h1 { font-family: var(--serif); font-size: 2.05rem; font-weight: 600; line-height: 1.22; color: var(--ink); margin-bottom: 30px; }
+    .meta-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); border: 1px solid var(--rule); background: var(--bg-card); margin-bottom: 20px; }
+    .meta-item { padding: 14px 18px; border-right: 1px solid var(--rule); }
     .meta-item:last-child { border-right: none; }
-
-    .meta-label {
-      font-family: var(--sans);
-      font-size: 10px;
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--ink-muted);
-      margin-bottom: 4px;
-    }
-
-    .meta-value {
-      font-family: var(--sans);
-      font-size: 14px;
-      font-weight: 500;
-      color: var(--ink);
-    }
-
-    .disclaimer-note {
-      font-family: var(--sans);
-      font-size: 13px;
-      color: var(--ink-muted);
-      font-style: italic;
-      border-left: 3px solid var(--accent);
-      padding: 10px 16px;
-      background: var(--highlight);
-    }
-
-    /* ── TABLE OF CONTENTS ── */
-    .toc {
-      background: var(--bg-card);
-      border: 1px solid var(--rule);
-      padding: 24px 28px;
-      margin-bottom: 48px;
-    }
-
-    .toc-title {
-      font-family: var(--sans);
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--ink-muted);
-      margin-bottom: 14px;
-    }
-
-    .toc ol {
-      padding-left: 20px;
-      counter-reset: none;
-    }
-
-    .toc li {
-      font-family: var(--sans);
-      font-size: 14px;
-      margin-bottom: 6px;
-      color: var(--ink-light);
-    }
-
-    .toc a {
-      color: var(--accent);
-      text-decoration: none;
-    }
+    .meta-label { font-family: var(--sans); font-size: 10px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-muted); margin-bottom: 4px; }
+    .meta-value { font-family: var(--sans); font-size: 14px; font-weight: 500; color: var(--ink); }
+    .disclaimer-note { font-family: var(--sans); font-size: 13px; color: var(--ink-muted); font-style: italic; border-left: 3px solid var(--accent); padding: 10px 16px; background: var(--highlight); }
+    .toc { background: var(--bg-card); border: 1px solid var(--rule); padding: 22px 28px; margin-bottom: 48px; }
+    .toc-title { font-family: var(--sans); font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-muted); margin-bottom: 12px; }
+    .toc ol { padding-left: 20px; }
+    .toc li { font-family: var(--sans); font-size: 14px; margin-bottom: 5px; color: var(--ink-light); }
+    .toc a { color: var(--accent); text-decoration: none; }
     .toc a:hover { text-decoration: underline; }
-
-    /* ── SECTIONS ── */
-    section { margin-bottom: 52px; }
-
-    h2 {
-      font-family: var(--serif);
-      font-size: 1.45rem;
-      font-weight: 600;
-      color: var(--ink);
-      margin-bottom: 16px;
-      padding-bottom: 8px;
-      border-bottom: 1.5px solid var(--ink);
-    }
-
-    .section-number {
-      font-family: var(--sans);
-      font-size: 12px;
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--accent);
-      display: block;
-      margin-bottom: 4px;
-    }
-
-    h3 {
-      font-family: var(--serif);
-      font-size: 1.15rem;
-      font-weight: 600;
-      color: var(--ink);
-      margin: 28px 0 10px;
-    }
-
-    h4 {
-      font-family: var(--sans);
-      font-size: 13px;
-      font-weight: 600;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin: 20px 0 8px;
-    }
-
+    section { margin-bottom: 56px; }
+    h2 { font-family: var(--serif); font-size: 1.45rem; font-weight: 600; color: var(--ink); margin-bottom: 16px; padding-bottom: 8px; border-bottom: 1.5px solid var(--ink); }
+    .section-number { font-family: var(--sans); font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); display: block; margin-bottom: 4px; }
+    h3 { font-family: var(--serif); font-size: 1.12rem; font-weight: 600; color: var(--ink); margin: 30px 0 10px; }
+    h4 { font-family: var(--sans); font-size: 12px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent); margin: 22px 0 8px; }
     p { margin-bottom: 16px; }
-
-    /* ── ABSTRACT BOX ── */
-    .abstract-box {
-      background: var(--highlight);
-      border: 1px solid var(--rule);
-      border-left: 4px solid var(--accent);
-      padding: 28px 32px;
-      margin-bottom: 48px;
-    }
-
-    .abstract-box .abstract-label {
-      font-family: var(--sans);
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 14px;
-    }
-
-    .abstract-box p {
-      font-size: 17px;
-      line-height: 1.75;
-    }
-
-    /* ── CONTRIBUTIONS BOX ── */
-    .contributions {
-      background: var(--bg-card);
-      border: 1px solid var(--rule);
-      padding: 22px 28px;
-      margin: 20px 0;
-    }
-
-    /* ── LISTS ── */
-    ul, ol {
-      padding-left: 24px;
-      margin-bottom: 16px;
-    }
-
+    .abstract-box { background: var(--highlight); border: 1px solid var(--rule); border-left: 4px solid var(--accent); padding: 28px 32px; margin-bottom: 48px; }
+    .abstract-label { font-family: var(--sans); font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 14px; }
+    .abstract-box p { font-size: 17px; line-height: 1.75; }
+    .contrib-box { background: var(--bg-card); border: 1px solid var(--rule); border-left: 3px solid var(--accent); padding: 20px 26px; margin: 18px 0; }
+    ul, ol { padding-left: 24px; margin-bottom: 16px; }
     li { margin-bottom: 8px; }
-
-    li::marker {
-      color: var(--accent);
-    }
-
+    li::marker { color: var(--accent); }
     strong { font-weight: 600; }
     em { font-style: italic; }
-
-    /* ── FORMULA BOX ── */
-    .formula {
-      background: var(--code-bg);
-      color: var(--code-fg);
-      font-family: var(--mono);
-      font-size: 15px;
-      padding: 20px 24px;
-      border-radius: 4px;
-      margin: 16px 0;
-      overflow-x: auto;
-      line-height: 1.6;
-    }
-
-    /* ── ARCHITECTURE DIAGRAM ── */
-    .arch-diagram {
-      background: var(--code-bg);
-      color: #a6e3a1;
-      font-family: var(--mono);
-      font-size: 13px;
-      line-height: 1.55;
-      padding: 28px;
-      border-radius: 4px;
-      margin: 20px 0;
-      overflow-x: auto;
-      white-space: pre;
-    }
-
-    /* ── TABLE ── */
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin: 20px 0;
-      font-family: var(--sans);
-      font-size: 14px;
-    }
-
-    thead tr {
-      background: var(--ink);
-      color: #fff;
-    }
-
-    th {
-      padding: 12px 16px;
-      text-align: left;
-      font-weight: 600;
-      letter-spacing: 0.03em;
-    }
-
+    .formula { background: var(--code-bg); color: var(--code-fg); font-family: var(--mono); font-size: 14.5px; padding: 18px 22px; border-radius: 4px; margin: 14px 0; overflow-x: auto; line-height: 1.65; white-space: pre; }
+    .arch-diagram { background: var(--code-bg); color: #a6e3a1; font-family: var(--mono); font-size: 12.5px; line-height: 1.55; padding: 26px; border-radius: 4px; margin: 20px 0; overflow-x: auto; white-space: pre; }
+    table { width: 100%; border-collapse: collapse; margin: 18px 0; font-family: var(--sans); font-size: 14px; }
+    thead tr { background: var(--ink); color: #fff; }
+    th { padding: 11px 16px; text-align: left; font-weight: 600; letter-spacing: 0.03em; }
     tbody tr:nth-child(even) { background: var(--bg-card); }
     tbody tr:nth-child(odd) { background: var(--bg); }
-
-    td {
-      padding: 11px 16px;
-      border-bottom: 1px solid var(--rule);
-      vertical-align: top;
-    }
-
-    /* ── HEALTH VECTOR CALLOUT ── */
-    .callout {
-      border: 1px solid var(--rule);
-      border-left: 4px solid var(--accent-light);
-      background: var(--bg-card);
-      padding: 18px 22px;
-      margin: 18px 0;
-    }
-
-    .callout-label {
-      font-family: var(--sans);
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--accent-light);
-      margin-bottom: 8px;
-    }
-
-    /* ── CATEGORY PATHOGENS ── */
-    .pathogen {
-      border: 1px solid var(--rule);
-      padding: 18px 22px;
-      margin: 12px 0;
-      background: var(--bg);
-    }
-
-    .pathogen-title {
-      font-family: var(--sans);
-      font-size: 13px;
-      font-weight: 700;
-      color: var(--accent);
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      margin-bottom: 8px;
-    }
-
-    .pathogen p { margin-bottom: 8px; font-size: 16px; }
-
-    /* ── REFERENCES ── */
-    .references {
-      font-family: var(--sans);
-      font-size: 13.5px;
-      line-height: 1.65;
-      border-top: 1.5px solid var(--ink);
-      padding-top: 24px;
-      margin-top: 48px;
-    }
-
-    .references ol { padding-left: 22px; }
-    .references li { margin-bottom: 10px; color: var(--ink-light); }
-
-    /* ── FOOTER ── */
-    footer {
-      border-top: 2px solid var(--ink);
-      padding: 24px 0 12px;
-      margin-top: 60px;
-      font-family: var(--sans);
-      font-size: 13px;
-      color: var(--ink-muted);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
-
+    td { padding: 10px 16px; border-bottom: 1px solid var(--rule); vertical-align: top; }
+    .callout { border: 1px solid var(--rule); border-left: 4px solid var(--accent-light); background: var(--bg-card); padding: 16px 20px; margin: 14px 0; }
+    .callout-label { font-family: var(--sans); font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent-light); margin-bottom: 8px; }
+    .pathogen { border: 1px solid var(--rule); padding: 18px 22px; margin: 14px 0; background: var(--bg); }
+    .pathogen-title { font-family: var(--sans); font-size: 12px; font-weight: 700; color: var(--accent); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 10px; }
+    .pathogen p { margin-bottom: 8px; font-size: 16.5px; }
+    .references-list { font-family: var(--sans); font-size: 13.5px; line-height: 1.65; }
+    .references-list ol { padding-left: 22px; }
+    .references-list li { margin-bottom: 10px; color: var(--ink-light); }
+    footer { border-top: 2px solid var(--ink); padding: 22px 0 10px; margin-top: 60px; font-family: var(--sans); font-size: 13px; color: var(--ink-muted); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; }
     footer strong { color: var(--ink); }
-
-    /* ── DIVIDER ── */
-    hr {
-      border: none;
-      border-top: 1px solid var(--rule);
-      margin: 40px 0;
-    }
-
-    /* ── PRINT ── */
-    @media print {
-      .preprint-banner { display: none; }
-      body { font-size: 12pt; }
-      h1 { font-size: 18pt; }
-      h2 { font-size: 14pt; }
-    }
-
-    @media (max-width: 600px) {
-      body { font-size: 16px; }
-      h1 { font-size: 1.6rem; }
-      .meta-grid { grid-template-columns: 1fr 1fr; }
-      .wrapper { padding: 0 18px 60px; }
-    }
+    hr { border: none; border-top: 1px solid var(--rule); margin: 44px 0; }
+    @media print { .preprint-banner { display: none; } body { font-size: 12pt; } h1 { font-size: 17pt; } }
+    @media (max-width: 600px) { body { font-size: 16px; } h1 { font-size: 1.55rem; } .wrapper { padding: 0 18px 60px; } }
   </style>
 </head>
 <body>
 
-<div class="preprint-banner">
-  Preprint &mdash; Not Yet Peer Reviewed &mdash; June 2026
-</div>
+<div class="preprint-banner">Preprint &mdash; Not Yet Peer Reviewed &mdash; June 2026</div>
 
 <div class="wrapper">
 
-  <!-- HEADER -->
   <header>
     <div class="paper-label">Working Paper &middot; Enterprise AI Infrastructure</div>
     <h1>The Epistemic Immune System: Domain-Velocity Aware Decay and Zero-Knowledge Cascades for Epistemic Context Graphs</h1>
-
     <div class="meta-grid">
-      <div class="meta-item">
-        <div class="meta-label">Author</div>
-        <div class="meta-value">Shashank Kumar</div>
-      </div>
-      <div class="meta-item">
-        <div class="meta-label">Affiliation</div>
-        <div class="meta-value">Independent Researcher</div>
-      </div>
-      <div class="meta-item">
-        <div class="meta-label">Date</div>
-        <div class="meta-value">June 2026</div>
-      </div>
-      <div class="meta-item">
-        <div class="meta-label">Status</div>
-        <div class="meta-value">Preprint &mdash; Under Revision</div>
-      </div>
+      <div class="meta-item"><div class="meta-label">Author</div><div class="meta-value">Shashank Kumar</div></div>
+      <div class="meta-item"><div class="meta-label">Affiliation</div><div class="meta-value">Independent Researcher</div></div>
+      <div class="meta-item"><div class="meta-label">Date</div><div class="meta-value">June 2026</div></div>
+      <div class="meta-item"><div class="meta-label">Status</div><div class="meta-value">Preprint &mdash; Under Revision</div></div>
     </div>
-
-    <p class="disclaimer-note">
-      This manuscript has not been peer-reviewed or accepted for publication in any journal or conference proceedings. All contributions remain subject to revision.
-    </p>
+    <p class="disclaimer-note">This manuscript has not been peer-reviewed or accepted for publication in any journal or conference proceedings. All contributions remain subject to revision.</p>
   </header>
 
-  <!-- ABSTRACT -->
   <div class="abstract-box">
-    <div class="abstract-label">Executive Summary</div>
-    <p>
-      Enterprise AI systems are failing silently&mdash;not through catastrophic collapse, but through epistemic rot. Binding decisions fall stale without anyone noticing. Unresolved questions drop below retrieval thresholds and become invisible. Speculative hypotheses are cited as settled fact, their untested status laundered through repetition. Furthermore, modern enterprises operate in siloed departments (e.g., Legal, Engineering), creating cross-departmental epistemic conflicts that cannot be resolved due to strict data sovereignty constraints. Meanwhile, the emerging infrastructure layer promised to solve these problems&mdash;context graphs&mdash;captures decision traces and governance metadata but remains blind to the epistemic status of the knowledge it stores and the &ldquo;unknown-unknowns&rdquo; missing from its topology.
-    </p>
-    <p>
-      This paper introduces a comprehensive framework designed to operationalize organizational truth. First, we introduce the <strong>Epistemic Immune System (EIS)</strong>&mdash;a self-monitoring layer that sits atop epistemic context graphs and continuously scans for epistemic degradation: status creep, staleness, ignorance collapse, adversarial anomalies, and <strong>Epistemic Dark Matter</strong> (topological structural voids). Second, we complement the immune system with <strong>Domain Velocity Epistemic Decay (DVED)</strong>, an extension of existing epistemic decay architectures that modulates forgetting rates by domain-specific velocity, correcting a fundamental misspecification in class-specific-only decay.
-    </p>
-    <p>
-      Third, we introduce a completely novel architectural breakthrough: <strong>Zero-Knowledge Epistemic Cascades (ZKEC)</strong>. This mechanism utilizes Zero-Knowledge Proofs (ZKPs) to automatically identify and decay conflicting projects across isolated departmental ledgers without exposing the underlying proprietary text. Finally, we integrate these contributions into the <strong>Epistemic Context Graph (ECG)</strong>, a structured representation where every decision trace node carries OIDA-style epistemic classification, a domain-velocity modulated importance score, and a continuous health vector.
-    </p>
-    <p>
-      The composite architecture is the first proposal to unify domain-aware temporal dynamics, continuous epistemic health monitoring, and privacy-preserving cryptographic conflict resolution into a single enterprise AI infrastructure. We provide a formal specification of each component, a reference implementation architecture, a taxonomy of detection signatures for epistemic pathogens, and a research agenda for empirical validation.
-    </p>
+    <div class="abstract-label">Abstract</div>
+    <p>Enterprise knowledge infrastructure suffers from a class of failures that retrieval-centric architectures cannot address: <strong>epistemic degradation</strong>. Decisions become stale without being superseded. Hypotheses accumulate citations until they are indistinguishable from evidence. Unresolved questions decay below retrieval thresholds, rendering institutional ignorance invisible. Existing epistemic memory architectures leave three structural gaps unresolved: (1) decay rates remain insensitive to domain-specific temporal dynamics; (2) no continuous monitoring layer detects degradation between classification events; and (3) no mechanism exists for resolving cross-departmental epistemic contradictions without violating data sovereignty.</p>
+    <p>This paper introduces three tightly integrated contributions. <strong>Domain Velocity Epistemic Decay (DVED)</strong> corrects the misspecification of class-uniform decay by introducing a learnable domain velocity coefficient <code>v_d &isin; [0,1]</code> that modulates the effective forgetting rate as a function of how rapidly the relevant external world changes. <strong>The Epistemic Immune System (EIS)</strong> provides a continuous monitoring layer that maintains a five-dimensional health vector <code>H(KO) = [h_status, h_staleness, h_ignorance, h_adversarial, h_darkmatter]</code> per Knowledge Object, with formal detection signatures for five categories of epistemic pathogen&mdash;including the novel category of <strong>Epistemic Dark Matter</strong> (structural voids inferred from topological anomalies in the knowledge graph). <strong>Zero-Knowledge Epistemic Cascades (ZKEC)</strong> resolve cross-departmental epistemic contradictions using zk-SNARK proofs at the graph-edge level, propagating importance-score decay across isolated departmental ledgers without exposing underlying proprietary content.</p>
+    <p>To our knowledge, this is the first framework to (a) formally specify domain-velocity correction for epistemic decay, (b) provide a continuous multi-dimensional epistemic health monitor with adversarial detection, (c) introduce topological void detection as an epistemic pathogen category, and (d) apply zero-knowledge cryptography to cross-organizational epistemic conflict resolution.</p>
   </div>
 
-  <!-- TABLE OF CONTENTS -->
   <div class="toc">
     <div class="toc-title">Contents</div>
     <ol>
       <li><a href="#introduction">Introduction</a></li>
-      <li><a href="#threads">Converging Threads</a></li>
-      <li><a href="#architecture">The Proposed Architecture</a></li>
-      <li><a href="#implementation">Reference Implementation Architecture</a></li>
+      <li><a href="#background">Background and Related Work</a></li>
+      <li><a href="#dved">Domain Velocity Epistemic Decay (DVED)</a></li>
+      <li><a href="#eis">The Epistemic Immune System (EIS)</a></li>
+      <li><a href="#zkec">Zero-Knowledge Epistemic Cascades (ZKEC)</a></li>
+      <li><a href="#ecg">The Epistemic Context Graph (ECG)</a></li>
+      <li><a href="#implementation">Reference Implementation</a></li>
       <li><a href="#evaluation">Evaluation Methodology</a></li>
-      <li><a href="#conclusion">Conclusion and Future Work</a></li>
+      <li><a href="#conclusion">Conclusion</a></li>
       <li><a href="#references">References</a></li>
     </ol>
   </div>
@@ -478,319 +124,296 @@
     <span class="section-number">Section 1</span>
     <h2>Introduction</h2>
 
-    <h3>The Silent Crisis in Enterprise Knowledge</h3>
-    <p>
-      Enterprise AI deployments exhibit a well-documented paradox: investment continues to accelerate&mdash;the market is projected at $7&ndash;$12 billion in 2026, with knowledge-graph infrastructure growing at nearly $25&ndash;$100 billion (Korra.ai, 2025).
-    </p>
-    <p>
-      Prevailing diagnoses focus on retrieval fidelity: better embeddings, denser indexes, hybrid search, and graph-structured retrieval. These are legitimate improvements within their scope but share a structural blind spot. They operate on an epistemically flat substrate, treating all retrieved content as equally authoritative regardless of whether it records a binding board decision, an abandoned brainstorming memo, a contested claim, or an unresolved inquiry. The result is what Kumar (2026a) terms the <em>coherence trap</em>: AI systems produce outputs that are syntactically fluent and semantically grounded yet epistemically incoherent.
-    </p>
+    <h3>1.1 The Retrieval-Fidelity Ceiling</h3>
+    <p>Enterprise AI research has converged on retrieval fidelity as the primary lever for improving system reliability. The progression from dense retrieval to hybrid search to GraphRAG represents genuine progress within a well-defined optimization surface: given a query, retrieve the most semantically relevant content as efficiently as possible. Yet this surface has a ceiling that no retrieval improvement can breach.</p>
+    <p>Retrieval systems operate on an <strong>epistemically flat substrate</strong>. A semantically optimal retrieval pipeline returns the most relevant content&mdash;but relevance is computed over semantic distance, not epistemic authority. The system may retrieve a binding board decision, an abandoned brainstorming memo, a contested claim under active revision, and an unresolved inquiry. Each document is processed with equal epistemic weight. The LLM synthesizes a fluent, coherent, and fundamentally misleading response. Kumar (2026a) terms this the <em>coherence trap</em>.</p>
+    <p>This is not a retrieval failure. It is an <strong>epistemic infrastructure failure</strong>. No embedding model, reranker, or retrieval strategy can distinguish an authoritative Decision from an abandoned Hypothesis without access to metadata that the retrieval layer does not model.</p>
 
-    <h3>Four Emerging Problems</h3>
-    <p>Recent research has surfaced four degradation vectors that compound the coherence trap and remain unaddressed by any unified framework:</p>
-    <ol>
-      <li>
-        <strong>Uniform epistemic decay is misspecified.</strong> Bottino et al. (2026) propose class-specific decay in their OIDA architecture. However, Karhade (2026) demonstrates that even class-specific decay is too coarse: different knowledge types exhibit fundamentally different temporal dynamics depending on domain velocity. A Decision in a product roadmap domain changes meaning faster than a Decision in regulatory compliance.
-      </li>
-      <li>
-        <strong>Organizational knowledge degrades through multiple silent vectors.</strong> Gerlach &amp; Lange (2026) describe the &ldquo;AI knowledge trap&rdquo;: a self-reinforcing cycle where AI takes over tasks, human expertise erodes, AI models become outdated, and the expertise needed to update them is no longer available. Multi-agent systems exhibit &ldquo;problem drift&rdquo; (Kaesberg et al., 2026).
-      </li>
-      <li>
-        <strong>Emerging context graph infrastructure lacks epistemic status.</strong> Gartner defines context graphs as evolving structures that connect data, states, actions, and goals into a single graph. Context graphs capture decision traces but do not capture epistemic status. Without epistemic annotation, context graphs give agents the history of decisions without the authority of those decisions.
-      </li>
-      <li>
-        <strong>Cross-Departmental Data Silos and Unknown-Unknowns.</strong> Large organizations rely on highly siloed local ledgers (e.g., Legal vs. Engineering). Currently, when engineering makes an assumption that violates a hidden legal patent, the enterprise AI cannot identify the conflict without breaching data sovereignty. Furthermore, current systems only model what is known or explicitly asked, ignoring the vast &ldquo;unknown-unknowns&rdquo; (Epistemic Dark Matter) hiding within the graph topology.
-      </li>
-    </ol>
+    <h3>1.2 The Three Structural Gaps</h3>
+    <p>Recent work has established a foundation for epistemic memory in organizational AI. OIDA (Bottino et al., 2026) introduces typed Knowledge Objects (KOs) with class labels&mdash;Decision, Evidence, Hypothesis, Question, Observation, Plan, Constraint, Narrative, Evaluation&mdash;and class-specific decay functions. Kumar (2026a) extends this with the Federated Epistemic Ledger (FEL) and Workflow-Based Epistemic Decay. Despite this progress, three structural gaps remain.</p>
+    <p><strong>Gap 1: Decay Misspecification.</strong> OIDA&rsquo;s decay function assigns the same forgetting rate to all KOs of class C regardless of domain. A Decision about a product roadmap (domain half-life: days) and a Decision about a regulatory requirement (domain half-life: years) receive identical treatment. Karhade (2026) demonstrates that uniform decay&mdash;even class-specific uniform decay&mdash;performs <strong>18&times; worse</strong> than no temporal weighting at all in mixed-domain retrieval tasks.</p>
+    <p><strong>Gap 2: No Continuous Health Monitoring.</strong> Between workflow events, the epistemic state of the knowledge base is unmonitored. Status creep, staleness, ignorance collapse, and adversarial manipulation all accumulate silently and go undetected (Gerlach &amp; Lange, 2026; CIO.com, 2026; Kaesberg et al., 2026).</p>
+    <p><strong>Gap 3: No Cross-Departmental Conflict Resolution.</strong> The FEL architecture federates epistemic authority but provides no mechanism for detecting contradictions across ledger boundaries without breaching data sovereignty. When Engineering records a Decision that contradicts a confidential Legal constraint, the conflict is invisible by construction.</p>
 
-    <h3>This Paper&rsquo;s Contribution</h3>
-    <p>We propose a unified architecture that addresses all four problems simultaneously:</p>
-    <div class="contributions">
-      <ul>
-        <li><strong>Domain Velocity Epistemic Decay (DVED):</strong> An extension of OIDA-style decay modulated by domain velocity coefficients.</li>
-        <li><strong>The Epistemic Immune System (EIS):</strong> A continuous monitoring layer detecting Status Creep, Staleness, Ignorance Collapse, Adversarial Anomalies, and Epistemic Dark Matter.</li>
-        <li><strong>Zero-Knowledge Epistemic Cascades (ZKEC):</strong> Our proprietary cryptographic routing mechanism for resolving multi-departmental truth without exposing raw text.</li>
-        <li><strong>The Epistemic Context Graph (ECG):</strong> The foundational graph data structure unifying the aforementioned systems.</li>
-      </ul>
+    <h3>1.3 Contributions</h3>
+    <div class="contrib-box">
+      <ol>
+        <li><strong>Domain Velocity Epistemic Decay (DVED):</strong> A formal correction to OIDA-class decay introducing a learnable domain velocity coefficient modulating the effective forgetting rate, estimated from organizational supersession data via survival analysis.</li>
+        <li><strong>The Epistemic Immune System (EIS):</strong> A continuous monitoring architecture with a five-dimensional health vector per KO, formal detection signatures for five pathogen categories including the novel <strong>Epistemic Dark Matter</strong> category, tiered alert-response protocol, and immune memory.</li>
+        <li><strong>Zero-Knowledge Epistemic Cascades (ZKEC):</strong> A novel mechanism applying zk-SNARK proofs at graph-edge level to detect cross-departmental epistemic contradictions and propagate importance-score cascades without revealing proprietary content.</li>
+        <li><strong>The Epistemic Context Graph (ECG):</strong> Integration of the above into a formally specified extension of the Gartner context graph standard.</li>
+      </ol>
     </div>
   </section>
 
   <!-- SECTION 2 -->
-  <section id="threads">
+  <section id="background">
     <span class="section-number">Section 2</span>
-    <h2>Converging Threads</h2>
-    <p>The Epistemic Immune System, Domain Velocity Epistemic Decay, and Epistemic Context Graph emerge from distinct, well-documented threads of recent research that have not yet been unified.</p>
+    <h2>Background and Related Work</h2>
 
-    <h3>2.1 The Epistemic Infrastructure Thread</h3>
-    <p>Bottino et al. (2026) provide the foundational OIDA architecture. Kumar (2026a) extends OIDA with the Federated Epistemic Ledger (FEL) and Workflow-Based Epistemic Decay.</p>
+    <h3>2.1 Epistemic Memory Architectures</h3>
+    <p>Bottino et al. (2026) introduce OIDA, the first formal epistemic memory layer for organizational AI. KOs carry class-specific exponential decay functions, signed contradiction edges, dependency and supersession relations, and provenance metadata. The OIDA architecture explicitly separates epistemic classification from semantic retrieval. Kumar (2026a) extends OIDA to enterprise scale with the Federated Epistemic Ledger and Workflow-Based Epistemic Decay, and formalizes adversarial hardening requirements.</p>
 
-    <h3>2.2 The Adaptive Decay Thread</h3>
-    <p>Karhade (2026) provides the critical insight that uniform decay is misspecified, proposing orthogonal signals of velocity and volatility. Empirical results show uniform decay performs 18&times; worse than no temporal weighting at all.</p>
+    <h3>2.2 Adaptive Temporal Decay</h3>
+    <p>Karhade (2026) addresses the temporal misspecification problem directly, introducing a continuous decay surface parameterized by velocity (frequency of observation) and volatility (magnitude of change between observations, measured via embedding distance). The critical empirical finding&mdash;18&times; performance degradation from uniform decay&mdash;motivates the domain velocity correction introduced in this paper. Weaviate (2026) provides a complementary practitioner framing, introducing &ldquo;context rot&rdquo; and domain-specific half-life parameters.</p>
 
-    <h3>2.3 The Silent Degradation Thread</h3>
-    <p>Multiple lines of research (Gerlach &amp; Lange, 2026; Kaesberg et al., 2026; Levin, 2026) document that organizational knowledge degrades quietly and invisibly through mechanisms that are cumulative and undetected by standard monitoring.</p>
+    <h3>2.3 Silent Organizational Degradation</h3>
+    <p>Multiple independent research threads document silent epistemic degradation: the AI Knowledge Trap (Gerlach &amp; Lange, 2026), Agentic Drift (CIO.com, 2026), Problem Drift in multi-agent systems (Kaesberg et al., 2026), the Augmentation Trap (Levin, 2026), and Semantic Reward Collapse (2026). No existing work proposes a unified monitoring architecture detecting these degradation modes at the knowledge-object level.</p>
 
-    <h3>2.4 The Context Graph Thread</h3>
-    <p>Gartner (2026) positioned context graphs as foundational infrastructure for agentic AI, predicting that over 50% of AI agent systems will rely on them by 2028. Context graphs provide the &ldquo;what&rdquo;, &ldquo;who&rdquo;, &ldquo;how&rdquo;, and &ldquo;why&rdquo; of organizational decisions.</p>
+    <h3>2.4 Context Graphs and Decision Traces</h3>
+    <p>Gartner (2026) positions context graphs as foundational infrastructure for agentic AI, predicting adoption in over 50% of agentic systems by 2028. Context graphs extend knowledge graphs with decision traces capturing <em>process</em> (&ldquo;how&rdquo; and &ldquo;why&rdquo;) in addition to content. The critical limitation, as identified by InfoWorld (2026) and Klarity.ai (2026), is the absence of epistemic status: a decision trace records that a decision occurred but not whether it is still binding, provisional, superseded, or hypothetical.</p>
 
-    <h3>2.5 The Digital Immunology Thread</h3>
-    <p>Practitioner forums (Cybernative.AI, 2025) propose &ldquo;epistemic immune systems&rdquo; metaphorically, with no formal architecture ever specified.</p>
-
-    <h3>2.6 The Gap: Cross-Departmental Sovereignty and ZKPs</h3>
-    <p>
-      No existing framework successfully integrates these systems while preserving local data privacy. Large enterprises cannot federate their data into a single giant vector database. While Zero-Knowledge Proofs (ZKPs) have been widely adopted in cryptocurrency and decentralized identity, their application to cross-departmental epistemic conflict resolution represents a massive, untapped frontier. This paper proposes the first proprietary synthesis of ZKPs with Epistemic Ledgers to achieve organizational truth without compromising sovereignty.
-    </p>
+    <h3>2.5 Digital Immunology</h3>
+    <p>The epistemic immune system metaphor originates in AI safety practitioner discourse (Cybernative.AI, 2025; LessWrong, 2026). Existing proposals are metaphorical and non-formal; no prior work provides a formal architecture with detection signatures, health metrics, and response protocols. This paper provides the first such formalization.</p>
   </section>
 
   <!-- SECTION 3 -->
-  <section id="architecture">
+  <section id="dved">
     <span class="section-number">Section 3</span>
-    <h2>The Proposed Architecture</h2>
-    <p>We now formally specify the integrated components.</p>
+    <h2>Domain Velocity Epistemic Decay (DVED)</h2>
 
-    <h3>3.1 Domain Velocity Epistemic Decay (DVED)</h3>
-    <p>
-      OIDA defines Knowledge Objects (KOs) with epistemic class C and class-specific decay function &delta;(C, t). We introduce a domain velocity coefficient v<sub>d</sub> &isin; [0,1] for each domain d. The effective decay function becomes:
-    </p>
-    <div class="formula">
-      &delta;_effective(C, d, t) = &delta;(C, t) &middot; (1 &minus; &alpha; &middot; v<sub>d</sub>)
-    </div>
-    <p><strong>Velocity Estimation:</strong></p>
-    <div class="formula">
-      v_d = |{supersession events in domain d}| / |{total KOs in domain d}| &middot; |{time window}|&sup1;
-    </div>
-    <p>Fast-moving domains (high v<sub>d</sub>) accelerate decay; slow-moving domains (low v<sub>d</sub>) suppress it.</p>
+    <h3>3.1 The Misspecification Problem</h3>
+    <p>The OIDA decay function for a Knowledge Object <code>KO</code> with class <code>C</code> is:</p>
+    <div class="formula">I(KO, t) = I&#8320; &middot; &delta;(C, t)
+where  &delta;(C, t) = exp(&minus;&lambda;_C &middot; t)</div>
+    <p>This assigns the same class-level rate &lambda;_C to all KOs of class C regardless of domain. The assumption is empirically violated across all organizational domains.</p>
+
+    <h3>3.2 The DVED Correction</h3>
+    <p>We introduce a domain velocity coefficient <code>v_d &isin; [0,1]</code> for each domain <code>d</code>. The DVED-corrected effective decay function is:</p>
+    <div class="formula">&delta;_effective(C, d, t) = &delta;(C, t) &middot; (1 &minus; &alpha; &middot; v_d)</div>
+    <p>where <code>&alpha; &isin; (0,1]</code> is a global scaling parameter bounding the maximum velocity correction. The corrected importance score is:</p>
+    <div class="formula">I_DVED(KO, t) = I&#8320; &middot; &delta;_effective(C, d, t) + &sum; injection_signals &minus; &sum; contradiction_penalties</div>
+    <p>The standard OIDA decay is recovered when <code>v_d = 0</code> for all domains. Fast-moving domains (high <code>v_d</code>) accelerate decay; slow-moving domains (low <code>v_d</code>) suppress it.</p>
+
+    <h3>3.3 Velocity Estimation</h3>
+    <p>Domain velocity is the empirical supersession rate over a rolling time window <code>T</code>:</p>
+    <div class="formula">v_d = |{supersession events in domain d over T}| / (|{active KOs in domain d}| &middot; T)</div>
+    <p>A <em>supersession event</em> requires <code>dist(emb(v_new), emb(v_old)) &gt; &theta;_supersession</code>&mdash;distinguishing genuine change from mere re-observation. Velocity parameters are initialized from domain taxonomy priors and continuously updated from organizational data via survival analysis (Kaplan-Meier per domain).</p>
 
     <table>
-      <thead>
-        <tr>
-          <th>Velocity Tier</th>
-          <th>Example Domains</th>
-          <th>Typical Half-Life</th>
-          <th>v<sub>d</sub></th>
-        </tr>
-      </thead>
+      <thead><tr><th>Velocity Tier</th><th>Example Domains</th><th>Typical Half-Life</th><th>v<sub>d</sub> (init)</th></tr></thead>
       <tbody>
-        <tr>
-          <td><strong>Hypersonic</strong></td>
-          <td>Product roadmaps, competitive intelligence, LLM releases</td>
-          <td>7&ndash;14 days</td>
-          <td>&approx; 0.9</td>
-        </tr>
-        <tr>
-          <td><strong>Standard</strong></td>
-          <td>Market analysis, team structures, project plans</td>
-          <td>30&ndash;90 days</td>
-          <td>&approx; 0.5</td>
-        </tr>
-        <tr>
-          <td><strong>Frozen</strong></td>
-          <td>Regulatory requirements, legal precedent, HTTP specs</td>
-          <td>1&ndash;5 years</td>
-          <td>&approx; 0.1</td>
-        </tr>
+        <tr><td><strong>Hypersonic</strong></td><td>Product roadmaps, competitive intelligence, LLM ecosystem</td><td>7&ndash;14 days</td><td>&approx; 0.90</td></tr>
+        <tr><td><strong>Standard</strong></td><td>Market analysis, team structures, project plans</td><td>30&ndash;90 days</td><td>&approx; 0.50</td></tr>
+        <tr><td><strong>Frozen</strong></td><td>Regulatory requirements, legal precedent, protocol specs</td><td>1&ndash;5 years</td><td>&approx; 0.10</td></tr>
       </tbody>
     </table>
+  </section>
 
-    <h3>3.2 The Epistemic Immune System (EIS)</h3>
-    <p>
-      The EIS maintains, for each Knowledge Object, a health vector:
-    </p>
-    <div class="formula">
-      H(KO) = [h_status, h_staleness, h_ignorance, h_adversarial, h_darkmatter]
-    </div>
-    <p>where each component &isin; [0,1] (0 = healthy, 1 = critically degraded). We define five categories of epistemic pathogens:</p>
+  <!-- SECTION 4 -->
+  <section id="eis">
+    <span class="section-number">Section 4</span>
+    <h2>The Epistemic Immune System (EIS)</h2>
+
+    <h3>4.1 Architecture Overview</h3>
+    <p>The EIS is a continuous monitoring service operating over the Epistemic Context Graph. It maintains, for each KO, a health vector:</p>
+    <div class="formula">H(KO) = [h_status, h_staleness, h_ignorance, h_adversarial, h_darkmatter] &isin; [0,1]&sup5;</div>
+    <p>where 0 denotes a healthy epistemic state and 1 denotes critical degradation. The aggregate health score is:</p>
+    <div class="formula">H_agg(KO) = max(h_status, h_staleness, h_ignorance, h_adversarial, h_darkmatter)</div>
+    <p>The EIS scanner runs on a configurable interval (recommended: 4 hours) and updates all health vectors continuously.</p>
+
+    <h3>4.2 Pathogen Taxonomy</h3>
 
     <div class="pathogen">
       <div class="pathogen-title">Category 1: Status Creep</div>
-      <p><strong>Definition:</strong> A Knowledge Object is being cited as if it carries higher epistemic authority than its assigned class warrants.</p>
-      <p><strong>Detection Signature:</strong> For a Hypothesis H, monitor the ratio R = |citations of H as Evidence| / |total citations of H|. If R &gt; 0.3 over a trailing 30-day window, flag for review.</p>
-      <p><strong>Example:</strong> A product manager&rsquo;s speculative projection (&ldquo;Feature X will boost engagement by 20%&rdquo;) is cited in three subsequent documents as established fact, with no validation experiment ever conducted.</p>
+      <p><strong>Definition.</strong> A KO of class C is cited as if it carries the epistemic authority of a higher class C&prime; (where Hypothesis &lt; Observation &lt; Evidence &lt; Decision).</p>
+      <p><strong>Detection Signature.</strong> For a Hypothesis H, define the citation authority ratio:</p>
+      <div class="formula">R(H) = |{citations of H as Evidence or Decision}| / |{total citations of H}|</div>
+      <p>Status Creep is flagged when <code>R(H) &gt; &tau;_status</code> over a trailing 30-day window. Recommended initialization: <code>&tau;_status = 0.30</code>.</p>
+      <p><strong>Health Component.</strong> <code>h_status = min(1.0, R / &tau;_status)</code></p>
     </div>
 
     <div class="pathogen">
       <div class="pathogen-title">Category 2: Staleness</div>
-      <p><strong>Definition:</strong> A Knowledge Object with high epistemic authority (Decision, Evidence) has received no reinforcement signals beyond its expected refresh interval.</p>
-      <p><strong>Detection Signature:</strong> If t_last_reinforcement &gt; &theta;<sub>D</sub> &middot; (1 + v<sub>d</sub>), flag for review. (Baseline &theta;<sub>D</sub> = 90 days, adjusted by domain velocity.)</p>
-      <p><strong>Example:</strong> A board decision from 8 months ago remains &ldquo;binding&rdquo; in the ledger, but the market conditions on which it was based have shifted dramatically.</p>
+      <p><strong>Definition.</strong> A high-authority KO (class Decision or Evidence) has received no reinforcement signal within its domain-velocity-adjusted refresh interval.</p>
+      <p><strong>Detection Signature.</strong></p>
+      <div class="formula">t_last(D) = elapsed time since last reinforcement signal
+&theta;_D(d) = &theta;_baseline &middot; (1 + (1 &minus; v_d))   [&theta;_baseline = 90 days]</div>
+      <p>Staleness is flagged when <code>t_last(D) &gt; &theta;_D(d)</code>.</p>
+      <p><strong>Health Component.</strong> <code>h_staleness = min(1.0, t_last / &theta;_D(d))</code></p>
     </div>
 
     <div class="pathogen">
       <div class="pathogen-title">Category 3: Ignorance Collapse</div>
-      <p><strong>Definition:</strong> An unresolved Question has decayed below retrieval threshold&mdash;the organization has &ldquo;forgotten that it doesn&rsquo;t know&rdquo; something important.</p>
-      <p><strong>Detection Signature:</strong> If I(Q) &lt; I<sub>min</sub> and t_open(Q) &gt; 30 days, the question is both old and invisible.</p>
-      <p><strong>Example:</strong> An unanswered regulatory question about patent clearance, opened 6 weeks ago, has decayed below retrieval threshold. Agents no longer surface it. The organization has effectively &ldquo;forgotten&rdquo; a critical risk.</p>
+      <p><strong>Definition.</strong> An unresolved Question Q has decayed below the retrieval importance threshold <code>I_min</code>, rendering institutional ignorance invisible to agents and operators.</p>
+      <p><strong>Detection Signature.</strong> Flagged when <code>I_DVED(Q) &lt; I_min</code> and <code>t_open(Q) &gt; &theta;_Q</code> (recommended: <code>&theta;_Q = 30</code> days). The condition identifies Questions that are simultaneously old, unanswered, and invisible.</p>
+      <p><strong>Health Component.</strong> <code>h_ignorance = max(0, 1 &minus; I_DVED(Q) / I_min)</code> when <code>I_DVED &lt; I_min</code>, else 0.</p>
     </div>
 
     <div class="pathogen">
       <div class="pathogen-title">Category 4: Adversarial Anomalies</div>
-      <p><strong>Definition:</strong> Sudden reclassification of Knowledge Objects without corresponding governance activity, indicative of malicious insider manipulation or autonomous agent hallucination.</p>
-      <p><strong>Detection Signature:</strong> If V_transition &gt; &mu; + 3&sigma; within a 24-hour window, trigger immediate alert and quarantine affected KOs.</p>
-      <p><strong>Additional Check:</strong> Transitions from Hypothesis to Decision without explicit human sign-off are always flagged, regardless of velocity.</p>
+      <p><strong>Definition.</strong> A statistically anomalous reclassification of KOs at the department or corpus level, indicative of insider manipulation, agent hallucination cascades, or automated poisoning attacks.</p>
+      <p><strong>Detection Signature.</strong> Let <code>V_trans(t)</code> be the number of KOs reclassified Hypothesis&rarr;Decision within a 24-hour window. Flagged when:</p>
+      <div class="formula">V_trans &gt; &mu;_trans + 3&sigma;_trans</div>
+      <p>Additionally, any Hypothesis&rarr;Decision transition without a cryptographically signed human governance event is flagged unconditionally, regardless of velocity.</p>
+      <p><strong>Health Component.</strong> <code>h_adversarial = 1.0</code> (binary quarantine) when either condition is triggered.</p>
     </div>
 
     <div class="pathogen">
       <div class="pathogen-title">Category 5: Epistemic Dark Matter (Structural Voids)</div>
-      <p><strong>Definition:</strong> By applying topological network analysis, the EIS detects &ldquo;Structural Voids&rdquo;&mdash;areas where knowledge <em>should</em> exist given the density of surrounding concepts, but is missing.</p>
-      <p><strong>Detection Signature:</strong> High eigenvector centrality nodes lacking standard bi-directional validation edges are flagged as structural voids.</p>
-      <p><strong>Health Impact:</strong> h_darkmatter flags the surrounding sub-graph as &ldquo;highly volatile / unknown,&rdquo; prompting the organization to investigate the gap before it becomes a critical failure point.</p>
+      <p><strong>Definition.</strong> A region of the knowledge graph where KOs are absent but topologically expected given surrounding density and centrality. Structural Voids represent <em>unknown unknowns</em>: the organization does not know what it does not know, and no Question KO has been created to surface the gap.</p>
+      <p><strong>Detection Signature.</strong> For each node <code>n</code> in the ECG, compute eigenvector centrality <code>c(n)</code>. A Structural Void is detected at <code>n</code> when:</p>
+      <div class="formula">c(n) &gt; &tau;_centrality  AND  |{outgoing validation edges from n}| &lt; &tau;_validation</div>
+      <p><strong>Response.</strong> The EIS automatically synthesizes a Question KO with <code>importance_score = c(n)</code>&mdash;converting an unknown unknown into a known unknown, making the gap visible to agents and operators.</p>
+      <p><strong>Health Component.</strong> <code>h_darkmatter = min(1.0, c(n) / &tau;_centrality)</code> when void condition is triggered.</p>
     </div>
 
+    <h3>4.3 Immune Response Protocol</h3>
     <table>
-      <thead>
-        <tr>
-          <th>Alert Level</th>
-          <th>H_aggregate</th>
-          <th>Response</th>
-        </tr>
-      </thead>
+      <thead><tr><th>Alert Level</th><th>H_agg</th><th>Automated Response</th></tr></thead>
       <tbody>
-        <tr>
-          <td><strong>Green</strong></td>
-          <td>&lt; 0.3</td>
-          <td>No action</td>
-        </tr>
-        <tr>
-          <td><strong>Yellow</strong></td>
-          <td>0.3 &ndash; 0.7</td>
-          <td>Flag in dashboard; no interruption to retrieval</td>
-        </tr>
-        <tr>
-          <td><strong>Orange</strong></td>
-          <td>0.7 &ndash; 0.9</td>
-          <td>Suppress importance score; notify governance board</td>
-        </tr>
-        <tr>
-          <td><strong>Red</strong></td>
-          <td>&gt; 0.9</td>
-          <td>Quarantine affected KOs; require human review before reactivation</td>
-        </tr>
+        <tr><td><strong>Green</strong></td><td>&lt; 0.3</td><td>No action</td></tr>
+        <tr><td><strong>Yellow</strong></td><td>0.3 &ndash; 0.7</td><td>Dashboard flag; retrieval unaffected</td></tr>
+        <tr><td><strong>Orange</strong></td><td>0.7 &ndash; 0.9</td><td>Importance score suppressed; governance board notified</td></tr>
+        <tr><td><strong>Red</strong></td><td>&gt; 0.9</td><td>KO quarantined; retrieval blocked; human review required</td></tr>
       </tbody>
     </table>
 
-    <h3>3.3 Zero-Knowledge Epistemic Cascades (ZKEC)</h3>
-    <p>
-      To resolve structural voids and contradictions across siloed departments, we introduce our completely novel architectural mechanism: <strong>Zero-Knowledge Epistemic Cascades</strong>.
-    </p>
-
-    <div class="callout">
-      <div class="callout-label">The Mechanism</div>
-      <p>When the Engineering agent records a Decision (e.g., &ldquo;Implement Feature X&rdquo;), it generates a cryptographic proof of its epistemic state. The global Epistemic Router checks this proof against the Legal department&rsquo;s private ledger.</p>
-    </div>
-
-    <div class="callout">
-      <div class="callout-label">The Cascade</div>
-      <p>If the router detects an <strong>Epistemic Contradiction</strong> (e.g., the feature violates a confidential patent), it triggers a cascade. It instantly drops the importance score of all downstream Engineering tasks relying on Feature X, alerting the project manager to a &ldquo;Cross-Departmental Void.&rdquo;</p>
-    </div>
-
-    <div class="callout">
-      <div class="callout-label">The Privacy Guarantee</div>
-      <p>This is achieved <em>without ever revealing Legal&rsquo;s actual patent data to the Engineering team&rsquo;s LLM</em>. It is a purely mathematical proof of contradiction, implemented using zk-SNARK protocols at the graph-edge level.</p>
-    </div>
-
-    <h3>3.4 The Epistemic Context Graph (ECG)</h3>
-    <p>We extend Gartner&rsquo;s context graph with three epistemic dimensions at every decision trace node:</p>
-    <ol>
-      <li><strong>Epistemic Class (EC):</strong> OIDA-style classification: Decision, Plan, Evidence, Hypothesis, Observation, Question, Constraint, Narrative, Evaluation.</li>
-      <li><strong>Domain-Velocity Modulated Importance Score (I<sub>DVED</sub>):</strong> A dynamic score maintained by the DVED layer.</li>
-      <li><strong>Health Vector (H):</strong> A continuous health assessment maintained by the EIS layer.</li>
-    </ol>
-
-    <h3>3.5 Composite Architecture</h3>
-    <div class="arch-diagram">&#x250C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2510;
-&#x2502;               AI Agent / Query Layer                 &#x2502;
-&#x251C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2524;
-&#x2502;    Zero-Knowledge Epistemic Cascades (ZKEC)           &#x2502;
-&#x2502;  (Cross-Departmental Cryptographic Validation)        &#x2502;
-&#x251C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2524;
-&#x2502;         Epistemic Immune System (EIS)                  &#x2502;
-&#x2502;  &#x250C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2510; &#x2502;
-&#x2502;  &#x2502; Status Creep  &#x2502; Staleness  &#x2502; Ignorance Collapse   &#x2502; &#x2502;
-&#x2502;  &#x2502; Adversarial   &#x2502; Epistemic Dark Matter          &#x2502; &#x2502;
-&#x2502;  &#x2514;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2518; &#x2502;
-&#x251C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2524;
-&#x2502;      Domain Velocity Epistemic Decay (DVED)            &#x2502;
-&#x251C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2524;
-&#x2502;         Epistemic Context Graph (ECG)                  &#x2502;
-&#x2502;  &#x250C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2510; &#x2502;
-&#x2502;  &#x2502; Decision Traces   &#x2502; Epistemic Classes           &#x2502; &#x2502;
-&#x2502;  &#x2502; I_DVED Scores     &#x2502; Health Vectors (H)          &#x2502; &#x2502;
-&#x2502;  &#x2514;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2518; &#x2502;
-&#x251C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2524;
-&#x2502;     Siloed Infrastructure (Legal, Eng, Finance…)        &#x2502;
-&#x2514;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2518;</div>
-  </section>
-
-  <!-- SECTION 4 -->
-  <section id="implementation">
-    <span class="section-number">Section 4</span>
-    <h2>Reference Implementation Architecture</h2>
-    <p>We provide a reference implementation as a set of interoperating services.</p>
-    <ul>
-      <li><strong>Service 1: Velocity Estimator.</strong> A Python service that periodically (daily) computes domain velocity v<sub>d</sub> from the ECG&rsquo;s supersession log. Output is written to a velocity registry consumed by the DVED modulator.</li>
-      <li><strong>Service 2: DVED Modulator.</strong> A middleware layer that intercepts importance score updates and applies the domain velocity correction &delta;_effective(C, d, t) = &delta;(C, t) &middot; (1 &minus; &alpha; &middot; v<sub>d</sub>). Configurable &alpha; parameter.</li>
-      <li><strong>Service 3: EIS Scanner.</strong> A scheduled service (configurable interval; suggested: 4-hourly) that scans the ECG for all five pathogen categories. Maintains an in-memory immune memory store for pathogen signatures.</li>
-      <li><strong>Service 4: ZKP Router.</strong> Handles the Zero-Knowledge Epistemic Cascades using zk-SNARK protocols for fast validation across departmental boundary APIs. Produces alert events when Epistemic Contradictions are detected.</li>
-      <li><strong>Service 5: ECG Enrichment API.</strong> A REST endpoint that accepts standard context graph nodes and returns enriched nodes with EC, I<sub>DVED</sub>, and H fields populated.</li>
-    </ul>
-    <p><strong>Technology Stack (Reference):</strong> Python (FastAPI for services), PostgreSQL (ECG storage, velocity registry, immune memory), Redis (real-time health vectors, caching), Docker Compose (deployment).</p>
-    <p><strong>Latency Targets:</strong> DVED modulation: sub-10ms per KO; EIS full scan (10&sup6; KOs): sub-60 seconds; ECG enrichment API: sub-100ms per query.</p>
+    <h3>4.4 Immune Memory</h3>
+    <p>The EIS maintains an <em>epistemic memory core</em>: a persistent store of confirmed pathogen signatures. When a detected pattern is confirmed harmful by governance review, its signature is stored. Future occurrences matching the stored signature are detected with reduced latency and elevated initial confidence&mdash;implementing an adaptive immune response analogous to antibody memory in biological systems.</p>
   </section>
 
   <!-- SECTION 5 -->
-  <section id="evaluation">
+  <section id="zkec">
     <span class="section-number">Section 5</span>
-    <h2>Evaluation Methodology</h2>
-    <p>We propose a staged evaluation approach:</p>
-    <ol>
-      <li>
-        <strong>Stage 1: Offline Validation of DVED.</strong> Using the organizational epistemic stress corpora released by Bottino et al. (2026), compare retrieval performance (ECS) of (a) OIDA with class-specific-only decay, (b) OIDA with DVED, and (c) a full context baseline. Hypothesis: DVED outperforms class-specific-only decay on retrieval tasks involving mixed velocity domains.
-      </li>
-      <li>
-        <strong>Stage 2: Synthetic Injection of Epistemic Pathogens.</strong> Using a synthetic enterprise knowledge graph seeded with known epistemic classes, inject controlled degradation including simulated cross-departmental contradictions to test ZKEC routing layer precision. Measure EIS detection precision and recall for each pathogen category.
-      </li>
-      <li>
-        <strong>Stage 3: Human-in-the-Loop Governance Simulation.</strong> Present flagged Knowledge Objects to domain experts and measure agreement rates between EIS alerts and human judgment. This establishes real-world thresholds for alert levels.
-      </li>
-      <li>
-        <strong>Stage 4: A/B Deployment.</strong> Deploy the ECG + EIS + ZKEC stack alongside a standard context graph deployment in a partner organization. Measure decision quality delta (accuracy, reversal rate, time to resolution) and epistemic coherence scores between the two conditions.
-      </li>
-    </ol>
+    <h2>Zero-Knowledge Epistemic Cascades (ZKEC)</h2>
+
+    <h3>5.1 The Cross-Departmental Sovereignty Problem</h3>
+    <p>The Federated Epistemic Ledger (Kumar, 2026a) distributes epistemic authority across organizational units, each maintaining a private local ledger. This creates a structural detection gap: when Engineering records a Decision that contradicts a confidential Legal constraint, the contradiction is invisible to both departments. Neither can expose its ledger content to perform cross-validation without violating sovereignty. This is a fundamental tension between two legitimate requirements: <em>epistemic completeness</em> and <em>data sovereignty</em>.</p>
+
+    <h3>5.2 The ZKEC Mechanism</h3>
+    <p>Zero-Knowledge Epistemic Cascades resolve this tension using zk-SNARK (Zero-Knowledge Succinct Non-Interactive Argument of Knowledge) proofs at the graph-edge level.</p>
+
+    <div class="callout">
+      <div class="callout-label">Step 1 &mdash; Proof Generation</div>
+      <p>When a department records a new Decision KO, it computes a commitment to its local epistemic ledger state:</p>
+      <div class="formula">commitment_d = Commit(G_d, r)</div>
+      <p>where <code>G_d</code> is a Merkle root over the department&rsquo;s Knowledge Object graph and <code>r</code> is a random blinding factor. It then generates a zk-SNARK proof <code>&pi;</code> attesting to a predicate over <code>G_d</code> without revealing <code>G_d</code> itself.</p>
+    </div>
+
+    <div class="callout">
+      <div class="callout-label">Step 2 &mdash; Contradiction Detection</div>
+      <p>The Epistemic Router maintains a registry of inter-departmental constraints as predicates over committed graph states. On new commitment submission:</p>
+      <div class="formula">verify(&pi;, commitment_d, predicate_ij) &rarr; {CONSISTENT, CONTRADICTED}</div>
+      <p>If <code>CONTRADICTED</code>, the Router knows an epistemic conflict exists between departments i and j&mdash;without knowing the content of either graph.</p>
+    </div>
+
+    <div class="callout">
+      <div class="callout-label">Step 3 &mdash; Cascade Propagation</div>
+      <p>On contradiction detection, importance scores cascade across all KOs downstream of the implicated Decision:</p>
+      <div class="formula">I_DVED(KO_downstream) &larr; I_DVED(KO_downstream) &middot; &lambda;_cascade</div>
+      <p>The Engineering project manager receives an alert: <em>&ldquo;Cross-departmental epistemic void detected. Downstream tasks affected. Human review required.&rdquo;</em> No Legal content is exposed.</p>
+    </div>
+
+    <h3>5.3 The Privacy Guarantee</h3>
+    <p>The ZKEC mechanism provides the following formal guarantee: the Epistemic Router learns only that a contradiction exists and which downstream nodes are affected. It learns nothing about the content of either department&rsquo;s private ledger. This is guaranteed by the zero-knowledge property of the underlying proof system (Groth16 or PLONK protocol): a valid proof attests to the truth of the predicate while revealing no additional information.</p>
   </section>
 
   <!-- SECTION 6 -->
-  <section id="conclusion">
+  <section id="ecg">
     <span class="section-number">Section 6</span>
-    <h2>Conclusion and Future Work</h2>
-    <p>This paper has introduced four integrated contributions to the emerging field of epistemic infrastructure for enterprise AI:</p>
+    <h2>The Epistemic Context Graph (ECG)</h2>
+
+    <h3>6.1 Extension of the Context Graph Standard</h3>
+    <p>Gartner (2026) defines the context graph as connecting &ldquo;data, states, actions, and goals into a single graph used for agentic AI.&rdquo; We extend the context graph standard with three epistemic dimensions at every decision trace node <code>n</code>:</p>
     <ol>
-      <li><strong>DVED:</strong> Correcting the uniform decay misspecification by modulating OIDA-style epistemic decay with domain-specific velocity coefficients derived from organizational data.</li>
-      <li><strong>The EIS:</strong> A continuous monitoring layer with a five-category detection taxonomy (Status Creep, Staleness, Ignorance Collapse, Adversarial Anomalies, Epistemic Dark Matter), tiered alert protocol, and immune memory for pathogen signatures.</li>
-      <li><strong>ZKEC:</strong> Our proprietary cryptographic routing mechanism that solves cross-departmental epistemic conflicts via Zero-Knowledge Proofs without violating data sovereignty&mdash;a first in the field.</li>
-      <li><strong>The ECG:</strong> Extending Gartner-defined context graphs with epistemic classification, DVED-modulated importance scores, and EIS-maintained health vectors, providing agents not just the history of decisions but their epistemic authority.</li>
+      <li><strong>Epistemic Class EC(n):</strong> OIDA-style classification &mdash; <em>Decision, Plan, Evidence, Hypothesis, Observation, Question, Constraint, Narrative, Evaluation</em></li>
+      <li><strong>Domain-Velocity Modulated Importance Score I<sub>DVED</sub>(n):</strong> Updated continuously by the DVED layer based on time elapsed, domain velocity, injection signals, and contradiction penalties.</li>
+      <li><strong>Health Vector H(n):</strong> Five-dimensional health assessment updated on each EIS scanner cycle.</li>
     </ol>
-    <p>
-      <strong>Research Agenda:</strong> Open questions remain: empirical validation of DVED against organizational corpora with known velocity distributions; calibration of EIS detection thresholds through red-teaming exercises; the exact cryptographic overhead of running zk-SNARKs over graph edges; economic modeling of the ROI of epistemic health monitoring; and extension of the ECG to non-text modalities (audio, video, telemetry).
-    </p>
+
+    <h3>6.2 Query-Time Enrichment</h3>
+    <p>When an AI agent queries the ECG, the response includes: retrieved KO content; EC(n) with provenance (classifier, timestamp, workflow signal); I<sub>DVED</sub>(n) with trajectory annotation (rising / falling / stable); H(n) with active alert flags; and a human-readable Epistemic Summary such as: <em>&ldquo;This Decision was classified 47 days ago in a Standard-velocity domain. It has received 1 reinforcement signal in the past 30 days. Current health: Yellow (h_staleness = 0.52).&rdquo;</em></p>
+
+    <h3>6.3 Composite Architecture</h3>
+    <div class="arch-diagram">&#x250C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2510;
+&#x2502;          AI Agent / Query Layer                        &#x2502;
+&#x2502;       (Epistemic-enriched response payload)             &#x2502;
+&#x251C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2524;
+&#x2502;   Zero-Knowledge Epistemic Cascades (ZKEC)              &#x2502;
+&#x2502;   zk-SNARK Router &#x2502; Contradiction Registry           &#x2502;
+&#x2502;   Cascade Propagator &#x2502; Sovereignty Boundary          &#x2502;
+&#x251C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2524;
+&#x2502;          Epistemic Immune System (EIS)                   &#x2502;
+&#x2502;  &#x250C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2510; &#x2502;
+&#x2502;  &#x2502; Status Creep &#x2502; Staleness   &#x2502; Ignorance Col.   &#x2502; &#x2502;
+&#x2502;  &#x2502; Adversarial  &#x2502; Dark Matter &#x2502; Immune Memory    &#x2502; &#x2502;
+&#x2502;  &#x2514;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2518; &#x2502;
+&#x251C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2524;
+&#x2502;       Domain Velocity Epistemic Decay (DVED)             &#x2502;
+&#x2502;   Velocity Estimator (Kaplan-Meier) &#x2502; Decay Modulator  &#x2502;
+&#x251C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2524;
+&#x2502;          Epistemic Context Graph (ECG)                    &#x2502;
+&#x2502;  &#x250C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2510; &#x2502;
+&#x2502;  &#x2502; Decision Traces &#x2502; Epistemic Classes (EC)          &#x2502; &#x2502;
+&#x2502;  &#x2502; I_DVED Scores   &#x2502; Health Vectors H(KO)            &#x2502; &#x2502;
+&#x2502;  &#x2502; Provenance      &#x2502; Supersession Links              &#x2502; &#x2502;
+&#x2502;  &#x2514;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2518; &#x2502;
+&#x251C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2524;
+&#x2502;     Siloed Departmental Infrastructure                    &#x2502;
+&#x2502;   [Legal KG]  [Engineering KG]  [Finance KG]  ...        &#x2502;
+&#x2514;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2518;</div>
+  </section>
+
+  <!-- SECTION 7 -->
+  <section id="implementation">
+    <span class="section-number">Section 7</span>
+    <h2>Reference Implementation</h2>
+    <p>We specify a reference implementation as five interoperating microservices:</p>
+    <ul>
+      <li><strong>Service 1: Velocity Estimator.</strong> Python service computing domain velocity <code>v_d</code> daily from the ECG&rsquo;s supersession event log via Kaplan-Meier survival analysis. Writes to velocity registry. Target: daily batch completion under 10 minutes.</li>
+      <li><strong>Service 2: DVED Modulator.</strong> Middleware intercepting all importance score update events, applying <code>&delta;_effective(C, d, t) = &delta;(C, t) &middot; (1 &minus; &alpha; &middot; v_d)</code>. Configurable <code>&alpha;</code>. Target latency: sub-10ms per KO.</li>
+      <li><strong>Service 3: EIS Scanner.</strong> Scheduled service (default: 4-hour interval) scanning all KOs for five pathogen conditions. Maintains in-memory immune memory store. Target: full scan of 10&sup6; KOs under 60 seconds.</li>
+      <li><strong>Service 4: ZKEC Router.</strong> Accepts commitment submissions from departmental ledger agents. Maintains constraint predicate registry. Evaluates proofs via zk-SNARK verifier (Groth16 or PLONK). Propagates importance-score cascades on contradiction detection. Target: proof verification latency under 500ms.</li>
+      <li><strong>Service 5: ECG Enrichment API.</strong> REST endpoint returning enriched nodes with EC, I<sub>DVED</sub>, and H fields. Target: sub-100ms per query at 10K QPS.</li>
+    </ul>
+    <p><strong>Technology Stack (Reference):</strong> Python 3.11 (FastAPI), PostgreSQL 16, Redis 7, snarkjs / circom (zk-SNARK), Docker Compose (local), Kubernetes (production).</p>
+  </section>
+
+  <!-- SECTION 8 -->
+  <section id="evaluation">
+    <span class="section-number">Section 8</span>
+    <h2>Evaluation Methodology</h2>
+    <p>We propose a four-stage evaluation program:</p>
+    <ol>
+      <li><strong>Stage 1: DVED Offline Validation.</strong> Compare Epistemic Coherence Score (ECS) across: (a) OIDA with class-uniform decay, (b) OIDA with DVED, (c) oracle with ground-truth importance scores. Hypothesis: DVED reduces the performance gap between conditions (a) and (c) by at least 40% on mixed-velocity domain retrieval tasks.</li>
+      <li><strong>Stage 2: Synthetic Pathogen Injection.</strong> Against a synthetic ECG with known ground-truth health states, inject all five pathogen types at controlled rates. Target EIS precision/recall: Status Creep &ge; 0.70/0.80, Staleness &ge; 0.85/0.90, Ignorance Collapse &ge; 0.80/0.90, Adversarial &ge; 0.95/0.95.</li>
+      <li><strong>Stage 3: ZKEC Precision Evaluation.</strong> Using paired departmental ledgers with injected contradictions at known rates, measure contradiction detection precision/recall, false positive rate for cascade propagation, proof generation/verification latency distribution, and data leakage under adversarial proof-crafting.</li>
+      <li><strong>Stage 4: Organizational A/B Deployment.</strong> In a partner organization, deploy ECG + EIS + ZKEC alongside a control condition over 90 days. Measure decision reversal rate, time-to-contradiction-detection, agent hallucination rate on epistemic boundary queries, and analyst trust calibration scores.</li>
+    </ol>
+  </section>
+
+  <!-- SECTION 9 -->
+  <section id="conclusion">
+    <span class="section-number">Section 9</span>
+    <h2>Conclusion</h2>
+    <p><strong>Domain Velocity Epistemic Decay</strong> corrects the fundamental misspecification in class-uniform decay by introducing domain-specific velocity coefficients learnable from organizational supersession data. This directly addresses the 18&times; performance degradation identified by Karhade (2026).</p>
+    <p><strong>The Epistemic Immune System</strong> provides the first formal continuous monitoring architecture for organizational knowledge health, defining five pathogen categories with precise detection signatures. The novel <strong>Epistemic Dark Matter</strong> category extends prior work by detecting structural absence of knowledge that topological analysis suggests should exist.</p>
+    <p><strong>Zero-Knowledge Epistemic Cascades</strong> resolve the fundamental tension between epistemic completeness and data sovereignty. By applying zk-SNARK proofs at the graph-edge level, ZKEC enables detection of cross-departmental epistemic contradictions and propagation of importance-score cascades without exposing proprietary content.</p>
+
+    <h3>Open Research Questions</h3>
+    <ol>
+      <li><strong>DVED calibration:</strong> What is the appropriate functional form for the velocity correction? Does it generalize across organizational types?</li>
+      <li><strong>EIS threshold calibration:</strong> At what false-positive rates do EIS alerts lose practitioner trust?</li>
+      <li><strong>ZKEC overhead:</strong> Which zk-SNARK protocol (Groth16, PLONK, STARKs) provides the best latency-security tradeoff for enterprise graph sizes (10&sup6;&ndash;10&sup9; edges)?</li>
+      <li><strong>Dark Matter validation:</strong> Do EIS-detected Structural Voids correlate with genuine organizational knowledge gaps confirmed by domain experts?</li>
+      <li><strong>Cross-organizational extension:</strong> Can ZKEC extend to inter-organizational knowledge sharing (suppliers, regulators, partners)?</li>
+    </ol>
   </section>
 
   <hr />
 
-  <!-- DECLARATIONS -->
   <section>
-    <h3>Declaration of Generative AI and AI-Assisted Technologies</h3>
-    <p>
-      The author utilized a large language model (LLM) tool for copy-editing and improving the readability of this manuscript. All intellectual contributions, analysis, and conclusions remain the author&rsquo;s own work.
-    </p>
-    <h3>Competing Interests Statement</h3>
-    <p>The author declares that there are no financial, non-financial, professional, or personal competing interests or conflicts of interest that could be perceived to influence the results and/or discussion reported in this paper.</p>
+    <h3>Declaration of Generative AI Use</h3>
+    <p>The author utilized a large language model (LLM) for copy-editing and improving manuscript readability. All intellectual contributions, architectural specifications, formal definitions, and conclusions are the author&rsquo;s own work.</p>
+    <h3>Competing Interests</h3>
+    <p>The author declares no competing interests.</p>
   </section>
 
-  <!-- REFERENCES -->
   <section id="references">
     <span class="section-number">References</span>
     <h2>References</h2>
-    <div class="references">
+    <div class="references-list">
       <ol>
         <li>Bottino, F., Ferrero, C., Dosio, N., &amp; Beneventano, P. (2026). Retrieval Is Not Enough: Why Organizational AI Needs Epistemic Infrastructure. <em>arXiv:2604.11759v2</em> (revised May 22, 2026).</li>
         <li>Karhade, M. (2026). Not All Memories Age the Same: Autodiscovery of Adaptive Decay in Knowledge Graphs. <em>arXiv:2604.26970</em>.</li>
@@ -798,12 +421,12 @@
         <li>Levin, J. (2026). The Augmentation Trap: AI Productivity and the Cost of Cognitive Offloading. <em>arXiv</em>.</li>
         <li>CIO.com. (2026). Agentic AI systems don&rsquo;t fail suddenly&mdash;they drift over time. February 19, 2026.</li>
         <li>Kaesberg, L. B., et al. (2026). DRIFTJudge and DRIFTPolicy: Detecting and Mitigating Problem Drift in Multi-Agent Debate. <em>Proceedings of EACL 2026</em>.</li>
-        <li>ISI. (2026). The Generative AI Paradox: GenAI and the Erosion of Trust, the Corrosion of Information Verification, and the Demise of Truth. <em>arXiv</em>.</li>
+        <li>ISI. (2026). The Generative AI Paradox. <em>arXiv</em>.</li>
         <li>Kumar, S. (2026a). Building Epistemic Infrastructure for Enterprise AI Search: Why Retrieval Is Not Enough. <em>SSRN</em>.</li>
         <li>Kumar, S. (2026b). LLMs Are Not Orchestrators: Fixing Agent Architecture with FSMs. Unpublished engineering report.</li>
         <li>Gartner. (2026). Hype Cycle for Agentic AI, 2026.</li>
         <li>Atlan. (2026). Gartner Data &amp; Analytics Summit 2026: Key Takeaways on Context &amp; AI. March 12, 2026.</li>
-        <li>InfoWorld. (2026). Contexts graphs, AI memory, and enterprise knowledge: Are decision traces enough? April 9, 2026.</li>
+        <li>InfoWorld. (2026). Context graphs, AI memory, and enterprise knowledge: Are decision traces enough? April 9, 2026.</li>
         <li>Klarity.ai. (2026). The Human Side of Context Graphs. March 1, 2026.</li>
         <li>Hawksight AI. (2026). Semantica: AI-native knowledge graph intelligence framework. GitHub.</li>
         <li>Cybernative.AI. (2025). Digital Immunology for AI: Building Epistemic Immune Systems to Neutralize Cognitive Pathogens.</li>
@@ -819,7 +442,6 @@
     </div>
   </section>
 
-  <!-- FOOTER -->
   <footer>
     <span><strong>Shashank Kumar</strong> &middot; Independent Researcher</span>
     <span>Preprint &mdash; Not peer-reviewed &middot; June 2026</span>
